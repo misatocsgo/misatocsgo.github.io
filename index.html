@@ -1,118 +1,238 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>misatoCSGO</title>
 
-```
-<style>
-    * {
-        box-sizing: border-box;
-    }
+    <title>misato</title>
 
-    html, body {
-        margin: 0;
-        padding: 0;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-        text-align: center;
-        font-family: sans-serif;
-    }
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
 
-    .banner {
-        width: 100vw;
-        height: 220px;
-        display: block;
-        object-fit: fill;
-        margin: 0;
-    }
+        body {
+            background: white;
+            color: #111;
+            font-family: sans-serif;
+            text-align: center;
+        }
 
-    .content {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px;
-    }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
 
-    h1 {
-        color: purple;
-    }
+        h1 {
+            color: purple;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
 
-    ul, ol {
-        display: inline-block;
-        text-align: left;
-    }
+        .subtitle {
+            color: #555;
+            margin-bottom: 45px;
+        }
 
-    pre {
-        display: inline-block;
-        text-align: left;
-    }
+        .server {
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 25px 0;
+        }
 
-    a {
-        color: purple;
-    }
-</style>
-```
+        .server h2 {
+            color: purple;
+            margin-top: 0;
+        }
 
+        .server p {
+            line-height: 1.6;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .public {
+            color: green;
+        }
+
+        .invite {
+            color: purple;
+        }
+
+        .command {
+            margin: 20px 0;
+            padding: 12px;
+            background: #f5f5f5;
+            font-family: monospace;
+            display: inline-block;
+        }
+
+        button,
+        .connect {
+            background: purple;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 5px;
+        }
+
+        button:hover,
+        .connect:hover {
+            background: #6a0dad;
+        }
+
+        .copied {
+            margin-left: 8px;
+            color: green;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #777;
+        }
+    </style>
 </head>
 
 <body>
 
-<img src="misato-banner.png" alt="Misato banner" class="banner">
+<div class="container">
 
-<div class="content">
+    <h1>misato</h1>
 
-```
-<h1>misatoCSGO</h1>
+    <p class="subtitle">
+        misato gaming servers
+    </p>
 
-<hr>
+    <!-- CS2 -->
 
-<h2>Server</h2>
+    <div class="server">
 
-<p><strong>Connect IP:</strong> 100.84.231.72:27015</p>
-<p><strong>Protocol:</strong> UDP</p>
+        <h2>misatoCSGO</h2>
 
-<h3>Requirements</h3>
+        <p class="status public">
+            Open to the Internet
+        </p>
 
-<ol>
-    <li>Counter-Strike 2 is required.</li>
-    <li>Tailscale is required.</li>
-    <li>You must be authorized to access the misatoCSGO network.</li>
-    <li>Tailscale must be connected before joining.</li>
-    <li>Administrator permissions may be required to install Tailscale.</li>
-</ol>
+        <p>
+            A public CS2 server running custom gameplay,
+            skins, Deathmatch, bots and more.
+        </p>
 
-<p>Open the CS2 console and enter:</p>
+        <p>
+            <strong>Server:</strong> misatoCSGO
+        </p>
 
-<pre>connect 100.84.231.72:27015</pre>
+        <p>
+            <strong>Address:</strong> YOUR-CS2-IP:27015
+        </p>
 
-<hr>
+        <div class="command">
+            connect YOUR-CS2-IP:27015
+        </div>
 
-<h2>Features</h2>
+        <br>
 
-<ul>
-    <li>Built-in Skin Changer</li>
-    <li>Hard Bots</li>
-    <li>CS:GO-style Gameplay</li>
-    <li>Deagle Only</li>
-    <li>AutoBhop</li>
-    <li>Deathmatch</li>
-    <li>CS:GO Mirage 24/7</li>
-    <li>Custom Gamemodes</li>
-</ul>
+        <a
+            class="connect"
+            href="steam://connect/YOUR-CS2-IP:27015"
+        >
+            Connect to CS2
+        </a>
 
-<hr>
+        <button onclick="copyText('connect YOUR-CS2-IP:27015', this)">
+            Copy Command
+        </button>
 
-<h2>Pages</h2>
+    </div>
 
-<p><a href="skins.html">Skins</a></p>
-<p><a href="gamemodes.html">Gamemodes</a></p>
-<p><a href="server.html">Server</a></p>
-```
+
+    <!-- Minecraft -->
+
+    <div class="server">
+
+        <h2>misatoSMP</h2>
+
+        <p class="status invite">
+            Invite Only
+        </p>
+
+        <p>
+            Vanilla Minecraft survival with a small,
+            private community.
+        </p>
+
+        <p>
+            You must be part of the <strong>prestigious group</strong>
+            to play.
+        </p>
+
+        <p>
+            <strong>Server:</strong> misatoSMP
+        </p>
+
+        <p>
+            <strong>Mode:</strong> Vanilla Survival
+        </p>
+
+        <p>
+            <strong>Access:</strong> Invite Only
+        </p>
+
+        <p>
+            <strong>Address:</strong> misatosmp.duckdns.org:25565
+        </p>
+
+        <div class="command">
+            misatosmp.duckdns.org:25565
+        </div>
+
+        <br>
+
+        <button onclick="copyText('misatosmp.duckdns.org:25565', this)">
+            Copy Address
+        </button>
+
+    </div>
+
+
+    <footer>
+        misato servers
+    </footer>
 
 </div>
 
+
+<script>
+    async function copyText(text, button) {
+        try {
+            await navigator.clipboard.writeText(text);
+
+            const oldText = button.textContent;
+            button.textContent = "Copied!";
+
+            setTimeout(() => {
+                button.textContent = oldText;
+            }, 1500);
+
+        } catch (error) {
+            alert("Copy failed. Please copy it manually.");
+        }
+    }
+</script>
+
 </body>
 </html>
+```
