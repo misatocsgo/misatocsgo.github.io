@@ -8,30 +8,39 @@
 
 ```
 <style>
-    body {
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
         margin: 0;
+        padding: 0;
+    }
+
+    body {
         text-align: center;
         font-family: sans-serif;
     }
 
-    header {
-        width: 100%;
-        text-align: center;
+    .banner {
+        width: 100vw;
+        height: 220px;
+        display: block;
+        object-fit: fill;
+        margin: 0;
     }
 
-    .misato-banner {
-        display: block;
-        width: 100%;
-        height: 220px;
-        object-fit: fill;
+    .content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
     }
 
     h1 {
         color: purple;
     }
 
-    ul,
-    ol {
+    ul, ol {
         display: inline-block;
         text-align: left;
     }
@@ -51,16 +60,12 @@
 
 <body>
 
-<header>
-    <a href="index.html">
-        <img src="misato-banner.png" alt="Misato banner" class="misato-banner">
-    </a>
+<img src="misato-banner.png" alt="Misato banner" class="banner">
+
+<div class="content">
 
 ```
 <h1>misatoCSGO</h1>
-```
-
-</header>
 
 <hr>
 
@@ -72,9 +77,7 @@
 
 <h2>Deathmatch</h2>
 
-<p>
-    Fast-paced free-for-all Deathmatch gameplay.
-</p>
+<p>Fast-paced free-for-all Deathmatch gameplay.</p>
 
 <ul>
     <li>Free For All</li>
@@ -85,9 +88,7 @@
 
 <h2>Deagle Only</h2>
 
-<p>
-    A dedicated Desert Eagle-only Deathmatch mode.
-</p>
+<p>A dedicated Desert Eagle-only Deathmatch mode.</p>
 
 <ul>
     <li>Desert Eagle only</li>
@@ -97,9 +98,7 @@
 
 <h2>CS:GO Mirage 24/7</h2>
 
-<p>
-    Classic Mirage-focused gameplay running around the clock.
-</p>
+<p>Classic Mirage-focused gameplay running around the clock.</p>
 
 <ul>
     <li>Mirage</li>
@@ -111,21 +110,20 @@
 
 <h2>AutoBhop</h2>
 
-<p>
-    Automatic bunnyhopping is available on the server.
-</p>
+<p>Automatic bunnyhopping is available on the server.</p>
 
 <h2>Hard Bots</h2>
 
-<p>
-    High-difficulty bots are available for populated gameplay.
-</p>
+<p>High-difficulty bots are available for populated gameplay.</p>
 
 <hr>
 
 <p><a href="index.html">Home</a></p>
 <p><a href="skins.html">Skins</a></p>
 <p><a href="server.html">Server</a></p>
+```
+
+</div>
 
 </body>
 </html>
