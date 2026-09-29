@@ -1,16 +1,13 @@
-```html id="7f2kqa"
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>misatoCSGO Server</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         html, body {
             margin: 0;
@@ -30,21 +27,13 @@
             padding: 60px 20px;
         }
 
-        h1 {
+        h1, h2 {
             color: purple;
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            color: purple;
-            margin-top: 35px;
         }
 
         .public {
             color: green;
             font-weight: bold;
-            font-size: 18px;
         }
 
         .server-info {
@@ -61,21 +50,14 @@
             font-family: monospace;
         }
 
-        button,
-        .connect {
+        button, .connect {
             background: purple;
             color: white;
             border: none;
             padding: 11px 18px;
             cursor: pointer;
-            font-size: 14px;
             text-decoration: none;
             margin: 5px;
-        }
-
-        button:hover,
-        .connect:hover {
-            background: #6a0dad;
         }
 
         ul {
@@ -84,9 +66,7 @@
             line-height: 1.8;
         }
 
-        a.back {
-            display: inline-block;
-            margin-top: 35px;
+        a {
             color: purple;
         }
     </style>
@@ -98,31 +78,16 @@
 
     <h1>misatoCSGO</h1>
 
-    <p class="public">
-        ● PUBLIC SERVER — OPEN TO THE INTERNET
-    </p>
+    <p class="public">● PUBLIC SERVER — OPEN TO THE INTERNET</p>
 
     <div class="server-info">
 
-        <p>
-            <strong>Server Name:</strong> misatoCSGO
-        </p>
+        <p><strong>Server Name:</strong> misatoCSGO</p>
+        <p><strong>Map:</strong> de_mirage</p>
+        <p><strong>Protocol:</strong> UDP</p>
+        <p><strong>Access:</strong> Public</p>
 
-        <p>
-            <strong>Map:</strong> de_mirage
-        </p>
-
-        <p>
-            <strong>Protocol:</strong> UDP
-        </p>
-
-        <p>
-            <strong>Access:</strong> Public
-        </p>
-
-        <p>
-            Anyone can connect to the server over the Internet.
-        </p>
+        <p>Anyone can connect to the server over the Internet.</p>
 
         <h2>Features</h2>
 
@@ -139,53 +104,42 @@
 
         <h2>Connect</h2>
 
-        <p>
-            Use the CS2 console:
-        </p>
-
         <div class="command">
             connect YOUR-CS2-IP:27015
         </div>
 
         <br>
 
-        <a
-            class="connect"
-            href="steam://connect/YOUR-CS2-IP:27015"
-        >
+        <a class="connect" href="steam://connect/YOUR-CS2-IP:27015">
             Connect to CS2
         </a>
 
-        <button onclick="copyCommand(this)">
+        <button onclick="copyText('connect YOUR-CS2-IP:27015', this)">
             Copy Command
         </button>
 
     </div>
 
-    <a class="back" href="index.html">
-        ← Back to Home
-    </a>
+    <p>
+        <a href="index.html">← Back to Home</a>
+    </p>
 
 </div>
 
 <script>
-    async function copyCommand(button) {
-        try {
-            await navigator.clipboard.writeText(
-                "connect YOUR-CS2-IP:27015"
-            );
+async function copyText(text, button) {
+    try {
+        await navigator.clipboard.writeText(text);
+        const old = button.textContent;
+        button.textContent = "Copied!";
 
-            const oldText = button.textContent;
-            button.textContent = "Copied!";
-
-            setTimeout(() => {
-                button.textContent = oldText;
-            }, 1500);
-
-        } catch (error) {
-            alert("Copy failed. Please copy the command manually.");
-        }
+        setTimeout(() => {
+            button.textContent = old;
+        }, 1500);
+    } catch {
+        alert("Copy failed. Please copy it manually.");
     }
+}
 </script>
 
 </body>
