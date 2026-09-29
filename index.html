@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>misato</title>
 
     <style>
@@ -10,11 +11,8 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
         }
@@ -27,31 +25,79 @@
         }
 
         .container {
-            width: 100%;
-            max-width: 1000px;
+            width: 92%;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 55px 20px;
         }
 
         h1 {
             color: purple;
-            font-size: 44px;
+            font-size: 48px;
             margin-bottom: 10px;
-        }
-
-        h2 {
-            color: purple;
         }
 
         .subtitle {
             color: #666;
             margin-bottom: 45px;
+            font-size: 17px;
         }
 
-        .server {
+        .accordion {
+            width: 100%;
+        }
+
+        details {
             border: 1px solid #ddd;
-            padding: 30px;
-            margin: 30px 0;
+            margin: 18px 0;
+            background: white;
+            width: 100%;
+        }
+
+        summary {
+            color: purple;
+            font-size: 21px;
+            font-weight: bold;
+            padding: 25px 30px;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            user-select: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+            position: absolute;
+            right: 30px;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        details[open] summary::after {
+            content: "−";
+        }
+
+        .content {
+            border-top: 1px solid #ddd;
+            padding: 35px 45px 40px;
+            text-align: center;
+        }
+
+        .content h2 {
+            color: purple;
+            margin-top: 30px;
+        }
+
+        .content h2:first-child {
+            margin-top: 0;
+        }
+
+        .content p {
+            line-height: 1.6;
         }
 
         .feature-image {
@@ -59,10 +105,10 @@
             height: auto;
             max-width: 100%;
             display: block;
-            margin: 0 auto 25px auto;
+            margin: 0 auto 30px;
         }
 
-        .public {
+        .server-status {
             color: green;
             font-weight: bold;
         }
@@ -72,20 +118,31 @@
             font-weight: bold;
         }
 
+        .notice {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .notice strong {
+            color: purple;
+        }
+
+        .filename,
         .command {
             background: #f5f5f5;
-            padding: 12px 16px;
+            padding: 13px 18px;
             display: inline-block;
-            margin: 15px 0;
+            margin: 18px 0;
             font-family: monospace;
         }
 
-        button,
         .button {
             background: purple;
             color: white;
             border: none;
-            padding: 11px 18px;
+            padding: 12px 20px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
@@ -93,26 +150,59 @@
             font-size: 14px;
         }
 
-        button:hover,
         .button:hover {
             background: #6a0dad;
-        }
-
-        .section {
-            border-top: 1px solid #ddd;
-            padding: 40px 0;
-            margin-top: 40px;
         }
 
         ul {
             display: inline-block;
             text-align: left;
-            line-height: 1.8;
+            line-height: 1.9;
+        }
+
+        .specs {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        .specs td {
+            border-bottom: 1px solid #ddd;
+            padding: 13px 15px;
+            text-align: left;
+        }
+
+        .specs tr:last-child td {
+            border-bottom: none;
+        }
+
+        .specs td:first-child {
+            font-weight: bold;
+            width: 30%;
         }
 
         footer {
             color: #777;
             margin-top: 50px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: 96%;
+                padding: 40px 10px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            summary {
+                padding: 22px 20px;
+            }
+
+            summary::after {
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -124,164 +214,365 @@
     <h1>misato</h1>
 
     <p class="subtitle">
-        misato gaming servers
+        private gaming servers and community projects
     </p>
 
 
-    <!-- misatoCSGO -->
+    <div class="accordion">
 
-    <div class="server">
+        <!-- ABOUT US -->
 
-        <h2>misatoCSGO</h2>
+        <details name="misato-accordion">
 
-        <p class="public">
-            ● TAILSCALE SERVER
-        </p>
+            <summary>About Us</summary>
 
-        <p>
-            Counter-Strike 2 server with custom gameplay,
-            skins, Deathmatch and more.
-        </p>
+            <div class="content">
 
-        <p>
-            <strong>Server:</strong> misatoCSGO
-        </p>
+                <h2>About misato</h2>
 
-        <p>
-            <strong>Map:</strong> de_mirage
-        </p>
+                <p>
+                    misato is a small self-hosted gaming server.
+                </p>
 
-        <p>
-            <strong>Protocol:</strong> UDP
-        </p>
+                <p>
+                    the servers are hosted locally and maintained by me.
+                </p>
 
-        <p>
-            <strong>Tailscale Address:</strong>
-            100.84.231.72:27015
-        </p>
+                <h2>Server Hardware</h2>
 
-        <div class="command">
-            connect 100.84.231.72:27015
-        </div>
+                <table class="specs">
+                    <tr>
+                        <td>Host</td>
+                        <td>HP EliteDesk 800 G5 Desktop Mini (SBKPF)</td>
+                    </tr>
 
-        <br>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Intel Core i7-9700T with 8 cores @ up to 4.30 GHz</td>
+                    </tr>
 
-        <a
-            class="button"
-            href="steam://connect/100.84.231.72:27015"
-        >
-            Connect to CS2
-        </a>
+                    <tr>
+                        <td>GPU</td>
+                        <td>Intel UHD Graphics 630</td>
+                    </tr>
 
-        <button
-            onclick="copyText('connect 100.84.231.72:27015', this)"
-        >
-            Copy Command
-        </button>
+                    <tr>
+                        <td>Memory</td>
+                        <td>32 GB RAM</td>
+                    </tr>
 
-    </div>
+                    <tr>
+                        <td>Storage</td>
+                        <td>256 GB</td>
+                    </tr>
+                </table>
 
+                <h2>Operating System</h2>
 
-    <!-- Skins -->
+                <table class="specs">
+                    <tr>
+                        <td>OS</td>
+                        <td>Debian GNU/Linux 13 (Trixie)</td>
+                    </tr>
 
-    <div class="section">
+                    <tr>
+                        <td>Kernel</td>
+                        <td>Linux 6.12.107+deb13-amd64</td>
+                    </tr>
 
-        <img
-            src="skins.png"
-            alt="misatoCSGO skins"
-            class="feature-image"
-        >
+                    <tr>
+                        <td>Shell</td>
+                        <td>Bash 5.2.37</td>
+                    </tr>
+                </table>
 
-        <h2>Skins</h2>
+                <h2>Server Location</h2>
 
-        <p>
-            misatoCSGO has a built-in skin changer.
-        </p>
+                <p>
+                    <strong>Fast Sydney-based server</strong>
+                </p>
 
-        <p>
-            Use:
-            <strong>!ws</strong>
-        </p>
+                <p>
+                    Hosted in Sydney, Australia for low-latency
+                    gaming within the region.
+                </p>
 
-        <ul>
-            <li>Weapons</li>
-            <li>Knives</li>
-            <li>Gloves</li>
-            <li>Agents</li>
-            <li>Stickers</li>
-            <li>Keychains</li>
-            <li>Music Kits</li>
-        </ul>
+            </div>
 
-    </div>
+        </details>
 
 
-    <!-- Gamemodes -->
+        <!-- CS2 SERVER -->
 
-    <div class="section">
+        <details name="misato-accordion">
 
-        <img
-            src="gamemodes.png"
-            alt="misatoCSGO gamemodes"
-            class="feature-image"
-        >
+            <summary>CS2 Server</summary>
 
-        <h2>Gamemodes</h2>
+            <div class="content">
 
-        <ul>
-            <li>Deathmatch</li>
-            <li>Deagle Only</li>
-            <li>CS:GO Mirage 24/7</li>
-            <li>AutoBhop</li>
-            <li>Hard Bots</li>
-            <li>Custom Gamemodes</li>
-        </ul>
+                <img
+                    src="skins.png"
+                    alt="misatoCSGO skins"
+                    class="feature-image"
+                >
 
-    </div>
+                <h2>misatoCSGO</h2>
+
+                <p class="server-status">
+                    ● ONLINE
+                </p>
+
+                <p>
+                    Counter-Strike 2 server with custom gameplay,
+                    skins, Deathmatch and more.
+                </p>
+
+                <table class="specs">
+                    <tr>
+                        <td>Server</td>
+                        <td>misatoCSGO</td>
+                    </tr>
+
+                    <tr>
+                        <td>Map</td>
+                        <td>de_mirage</td>
+                    </tr>
+
+                    <tr>
+                        <td>Network</td>
+                        <td>Tailscale</td>
+                    </tr>
+
+                    <tr>
+                        <td>Protocol</td>
+                        <td>UDP</td>
+                    </tr>
+
+                    <tr>
+                        <td>Port</td>
+                        <td>27015</td>
+                    </tr>
+                </table>
+
+                <div class="command">
+                    connect 100.84.231.72:27015
+                </div>
+
+                <br>
+
+                <a
+                    class="button"
+                    href="steam://connect/100.84.231.72:27015"
+                >
+                    Connect to CS2
+                </a>
+
+                <button
+                    class="button"
+                    onclick="copyText('connect 100.84.231.72:27015', this)"
+                >
+                    Copy Command
+                </button>
+
+                <h2>Skins</h2>
+
+                <p>
+                    misatoCSGO has a built-in skin changer.
+                </p>
+
+                <p>
+                    Use: <strong>!ws</strong>
+                </p>
+
+                <ul>
+                    <li>Weapons</li>
+                    <li>Knives</li>
+                    <li>Gloves</li>
+                    <li>Agents</li>
+                    <li>Stickers</li>
+                    <li>Keychains</li>
+                    <li>Music Kits</li>
+                </ul>
+
+                <h2>Gamemodes</h2>
+
+                <img
+                    src="gamemodes.png"
+                    alt="misatoCSGO gamemodes"
+                    class="feature-image"
+                >
+
+                <ul>
+                    <li>Deathmatch</li>
+                    <li>CS:GO Mirage 24/7</li>
+                    <li>AutoBhop</li>
+                    <li>Hard Bots</li>
+                    <li>Custom Gamemodes</li>
+                </ul>
+
+            </div>
+
+        </details>
 
 
-    <!-- misatoSMP -->
+        <!-- MINECRAFT SERVER -->
 
-    <div class="server">
+        <details name="misato-accordion">
 
-        <h2>misatoSMP</h2>
+            <summary>Minecraft Server</summary>
 
-        <p class="invite">
-            ● TAILSCALE - INVITE ONLY
-        </p>
+            <div class="content">
 
-        <p>
-            Vanilla Minecraft Survival.
-        </p>
+                <h2>misatoSMP</h2>
 
-        <p>
-            You must be part of the
-            <strong>prestigious group</strong>
-            to play.
-        </p>
+                <p class="invite">
+                    ● TAILSCALE - INVITE ONLY
+                </p>
 
-        <p>
-            <strong>Server:</strong> misatoSMP
-        </p>
+                <p>
+                    Vanilla Minecraft Survival.
+                </p>
 
-        <p>
-            <strong>Mode:</strong> Vanilla Survival
-        </p>
+                <p>
+                    You must be part of the
+                    <strong>prestigious group</strong>
+                    to play.
+                </p>
 
-        <p>
-            <strong>Network:</strong> Tailscale
-        </p>
+                <table class="specs">
+                    <tr>
+                        <td>Game</td>
+                        <td>Minecraft</td>
+                    </tr>
 
-        <p>
-            <strong>Access:</strong> Invite Only
-        </p>
+                    <tr>
+                        <td>Server Name</td>
+                        <td>misatoSMP</td>
+                    </tr>
 
-        <a
-            class="button"
-            href="mailto:viztini@proton.me?subject=misatoSMP%20Access%20Request&body=Hello%2C%20I%20would%20like%20to%20request%20access%20to%20misatoSMP."
-        >
-            Request Access
-        </a>
+                    <tr>
+                        <td>Mode</td>
+                        <td>Vanilla Survival</td>
+                    </tr>
+
+                    <tr>
+                        <td>Network</td>
+                        <td>Tailscale</td>
+                    </tr>
+
+                    <tr>
+                        <td>Access</td>
+                        <td>Invite Only</td>
+                    </tr>
+
+                    <tr>
+                        <td>Port</td>
+                        <td>TCP 25565</td>
+                    </tr>
+                </table>
+
+                <a
+                    class="button"
+                    href="mailto:viztini@proton.me?subject=misatoSMP%20Access%20Request&body=Hello%2C%20I%20would%20like%20to%20request%20access%20to%20misatoSMP."
+                >
+                    Request Access
+                </a>
+
+            </div>
+
+        </details>
+
+
+        <!-- SKINCHANGER -->
+
+        <details name="misato-accordion">
+
+            <summary>Vantix Skinchanger</summary>
+
+            <div class="content">
+
+                <h2>Vantix Skinchanger</h2>
+
+                <p>
+                    Counter-Strike 2 skin changer featuring
+                    weapon, knife, glove, agent, sticker and
+                    keychain customization.
+                </p>
+
+                <div class="filename">
+                    Vantix Skinchanger.exe
+                </div>
+
+                <br>
+
+                <a
+                    class="button"
+                    href="Vantix%20Skinchanger.exe"
+                    download
+                >
+                    Download Vantix
+                </a>
+
+                <a
+                    class="button"
+                    href="https://www.unknowncheats.me/forum/counter-strike-2-releases/756621-vantix-skinchanger-knives-gloves-agents-stickers-keychains.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Original Thread
+                </a>
+
+                <h2>Features</h2>
+
+                <ul>
+                    <li>Weapon skins</li>
+                    <li>Knife skins</li>
+                    <li>Glove skins</li>
+                    <li>Agents</li>
+                    <li>Stickers</li>
+                    <li>Keychains</li>
+                    <li>Music Kits</li>
+                    <li>Collections</li>
+                    <li>Patches</li>
+                    <li>Custom PaintKit colours</li>
+                </ul>
+
+                <div class="notice">
+
+                    <h2>Important Notice</h2>
+
+                    <p>
+                        <strong>
+                            We are NOT the developer or owner of Vantix.
+                        </strong>
+                    </p>
+
+                    <p>
+                        We are sharing this software as a
+                        third-party resource for the misato
+                        community. All rights, development and
+                        original distribution belong to their
+                        respective author.
+                    </p>
+
+                    <p>
+                        The original release and information can
+                        be found on UnknownCheats.
+                    </p>
+
+                    <p>
+                        Vantix interacts with Counter-Strike 2
+                        in a way that may trigger antivirus or
+                        endpoint-security detections. Only run
+                        software you trust and verify files before
+                        executing them.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </details>
 
     </div>
 
@@ -299,6 +590,7 @@ async function copyText(text, button) {
         await navigator.clipboard.writeText(text);
 
         const oldText = button.textContent;
+
         button.textContent = "Copied!";
 
         setTimeout(() => {
@@ -313,3 +605,4 @@ async function copyText(text, button) {
 
 </body>
 </html>
+
