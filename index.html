@@ -56,14 +56,6 @@
             font-weight: bold;
         }
 
-        .command {
-            background: #f5f5f5;
-            padding: 12px;
-            display: inline-block;
-            margin: 15px 0;
-            font-family: monospace;
-        }
-
         button, .connect {
             background: purple;
             color: white;
@@ -72,6 +64,11 @@
             cursor: pointer;
             text-decoration: none;
             margin: 5px;
+            display: inline-block;
+        }
+
+        button:hover, .connect:hover {
+            background: #6a0dad;
         }
 
         a {
@@ -97,17 +94,15 @@
 
         <p><strong>Address:</strong> YOUR-CS2-IP:27015</p>
 
-        <div class="command">connect YOUR-CS2-IP:27015</div>
+        <p>
+            <a class="connect" href="steam://connect/YOUR-CS2-IP:27015">
+                Connect to CS2
+            </a>
 
-        <br>
-
-        <a class="connect" href="steam://connect/YOUR-CS2-IP:27015">
-            Connect to CS2
-        </a>
-
-        <button onclick="copyText('connect YOUR-CS2-IP:27015', this)">
-            Copy Command
-        </button>
+            <button onclick="copyText('connect YOUR-CS2-IP:27015', this)">
+                Copy Command
+            </button>
+        </p>
     </div>
 
     <div class="server">
@@ -115,24 +110,33 @@
 
         <p class="invite">● INVITE ONLY</p>
 
-        <p>Vanilla Minecraft survival.</p>
+        <p>
+            Vanilla Minecraft survival for invited members only.
+        </p>
 
         <p>
             You must be part of the
             <strong>prestigious group</strong> to play.
         </p>
 
-        <p><strong>Address:</strong> misatosmp.duckdns.org:25565</p>
+        <p>
+            <strong>Server:</strong> misatoSMP
+        </p>
 
-        <div class="command">
-            misatosmp.duckdns.org:25565
-        </div>
+        <p>
+            <strong>Mode:</strong> Vanilla Survival
+        </p>
 
-        <br>
+        <p>
+            <strong>Access:</strong> Invite Only
+        </p>
 
-        <button onclick="copyText('misatosmp.duckdns.org:25565', this)">
-            Copy Address
-        </button>
+        <a
+            class="connect"
+            href="mailto:viztini@proton.me?subject=misatoSMP%20Access%20Request&body=Hello%2C%20I%20would%20like%20to%20request%20access%20to%20misatoSMP."
+        >
+            Request Access
+        </a>
     </div>
 
 </div>
@@ -141,6 +145,7 @@
 async function copyText(text, button) {
     try {
         await navigator.clipboard.writeText(text);
+
         const old = button.textContent;
         button.textContent = "Copied!";
 
