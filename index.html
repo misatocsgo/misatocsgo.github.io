@@ -1,575 +1,741 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>misato</title>
+<title>misato</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            background: white;
-            color: #111;
-            font-family: sans-serif;
-            text-align: center;
-        }
+    body {
+        background: white;
+        color: #111;
+        font-family: sans-serif;
+        text-align: center;
+    }
 
+    .container {
+        width: 92%;
+        max-width: 1150px;
+        margin: 0 auto;
+        padding: 55px 20px;
+    }
+
+    h1 {
+        color: purple;
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #666;
+        margin-bottom: 45px;
+        font-size: 17px;
+    }
+
+    .accordion {
+        width: 100%;
+    }
+
+    details {
+        border: 1px solid #ddd;
+        margin: 18px 0;
+        background: white;
+        width: 100%;
+    }
+
+    summary {
+        color: purple;
+        font-size: 21px;
+        font-weight: bold;
+        padding: 25px 30px;
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        user-select: none;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::after {
+        content: "+";
+        position: absolute;
+        right: 30px;
+        font-size: 25px;
+        font-weight: normal;
+    }
+
+    details[open] summary::after {
+        content: "−";
+    }
+
+    .content {
+        border-top: 1px solid #ddd;
+        padding: 35px 45px 40px;
+        text-align: center;
+    }
+
+    .content h2 {
+        color: purple;
+        margin-top: 30px;
+    }
+
+    .content h2:first-child {
+        margin-top: 0;
+    }
+
+    .content p {
+        line-height: 1.6;
+    }
+
+    .feature-image {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto 30px;
+    }
+
+    .server-status {
+        color: green;
+        font-weight: bold;
+    }
+
+    .invite {
+        color: purple;
+        font-weight: bold;
+    }
+
+    .notice {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 25px 0;
+        text-align: left;
+    }
+
+    .notice strong {
+        color: purple;
+    }
+
+    .filename,
+    .command {
+        background: #f5f5f5;
+        padding: 13px 18px;
+        display: inline-block;
+        margin: 18px 0;
+        font-family: monospace;
+    }
+
+    .button {
+        background: purple;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin: 5px;
+        font-size: 14px;
+    }
+
+    .button:hover {
+        background: #6a0dad;
+    }
+
+    ul {
+        display: inline-block;
+        text-align: left;
+        line-height: 1.9;
+    }
+
+    .specs {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px auto;
+    }
+
+    .specs td {
+        border-bottom: 1px solid #ddd;
+        padding: 13px 15px;
+        text-align: left;
+    }
+
+    .specs tr:last-child td {
+        border-bottom: none;
+    }
+
+    .specs td:first-child {
+        font-weight: bold;
+        width: 30%;
+    }
+
+    footer {
+        color: #777;
+        margin-top: 50px;
+    }
+
+    @media (max-width: 700px) {
         .container {
-            width: 92%;
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 55px 20px;
-        }
-
-        h1 {
-            color: purple;
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 45px;
-            font-size: 17px;
-        }
-
-        .accordion {
-            width: 100%;
-        }
-
-        details {
-            border: 1px solid #ddd;
-            margin: 18px 0;
-            background: white;
-            width: 100%;
-        }
-
-        summary {
-            color: purple;
-            font-size: 21px;
-            font-weight: bold;
-            padding: 25px 30px;
-            cursor: pointer;
-            list-style: none;
-            position: relative;
-            user-select: none;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: "+";
-            position: absolute;
-            right: 30px;
-            font-size: 25px;
-            font-weight: normal;
-        }
-
-        details[open] summary::after {
-            content: "−";
+            width: 96%;
+            padding: 40px 10px;
         }
 
         .content {
-            border-top: 1px solid #ddd;
-            padding: 35px 45px 40px;
-            text-align: center;
+            padding: 30px 20px;
         }
 
-        .content h2 {
-            color: purple;
-            margin-top: 30px;
+        summary {
+            padding: 22px 20px;
         }
 
-        .content h2:first-child {
-            margin-top: 0;
+        summary::after {
+            right: 20px;
         }
+    }
+</style>
 
-        .content p {
-            line-height: 1.6;
-        }
 
-        .feature-image {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            display: block;
-            margin: 0 auto 30px;
-        }
-
-        .server-status {
-            color: green;
-            font-weight: bold;
-        }
-
-        .invite {
-            color: purple;
-            font-weight: bold;
-        }
-
-        .notice {
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
-        }
-
-        .notice strong {
-            color: purple;
-        }
-
-        .filename,
-        .command {
-            background: #f5f5f5;
-            padding: 13px 18px;
-            display: inline-block;
-            margin: 18px 0;
-            font-family: monospace;
-        }
-
-        .button {
-            background: purple;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin: 5px;
-            font-size: 14px;
-        }
-
-        .button:hover {
-            background: #6a0dad;
-        }
-
-        ul {
-            display: inline-block;
-            text-align: left;
-            line-height: 1.9;
-        }
-
-        .specs {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-
-        .specs td {
-            border-bottom: 1px solid #ddd;
-            padding: 13px 15px;
-            text-align: left;
-        }
-
-        .specs tr:last-child td {
-            border-bottom: none;
-        }
-
-        .specs td:first-child {
-            font-weight: bold;
-            width: 30%;
-        }
-
-        footer {
-            color: #777;
-            margin-top: 50px;
-        }
-
-        @media (max-width: 700px) {
-            .container {
-                width: 96%;
-                padding: 40px 10px;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            summary {
-                padding: 22px 20px;
-            }
-
-            summary::after {
-                right: 20px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>misato</h1>
 
-    <p class="subtitle">
-        private gaming servers and community projects
-    </p>
+<h1>misato</h1>
 
-    <div class="accordion">
+<p class="subtitle">
+    private gaming servers and community projects
+</p>
 
-        <!-- ABOUT US -->
+<div class="accordion">
 
-        <details name="misato-accordion">
+    <!-- ABOUT US -->
 
-            <summary>About Us</summary>
+    <details name="misato-accordion">
 
-            <div class="content">
+        <summary>About Us</summary>
 
-                <h2>About misato</h2>
+        <div class="content">
 
-                <p>
-                    misato is a small self-hosted gaming server.
-                </p>
+            <h2>About misato</h2>
 
-                <p>
-                    the servers are hosted locally and maintained by two people.
-                </p>
+            <p>
+                misato is a small self-hosted gaming server.
+            </p>
 
-                <h2>Server Hardware</h2>
+            <p>
+                the servers are hosted locally and maintained by two people.
+            </p>
 
-                <table class="specs">
-                    <tr>
-                        <td>Host</td>
-                        <td>HP EliteDesk 800 G5 Desktop Mini (SBKPF)</td>
-                    </tr>
+            <h2>Server Hardware</h2>
 
-                    <tr>
-                        <td>CPU</td>
-                        <td>Intel Core i7-9700T with 8 cores @ up to 4.30 GHz</td>
-                    </tr>
+            <table class="specs">
 
-                    <tr>
-                        <td>GPU</td>
-                        <td>Intel UHD Graphics 630</td>
-                    </tr>
+                <tr>
+                    <td>Host</td>
+                    <td>HP EliteDesk 800 G5 Desktop Mini (SBKPF)</td>
+                </tr>
 
-                    <tr>
-                        <td>Memory</td>
-                        <td>32 GB RAM</td>
-                    </tr>
+                <tr>
+                    <td>CPU</td>
+                    <td>Intel Core i7-9700T with 8 cores @ up to 4.30 GHz</td>
+                </tr>
 
-                    <tr>
-                        <td>Storage</td>
-                        <td>256 GB</td>
-                    </tr>
-                </table>
+                <tr>
+                    <td>GPU</td>
+                    <td>Intel UHD Graphics 630</td>
+                </tr>
 
-                <h2>Operating System</h2>
+                <tr>
+                    <td>Memory</td>
+                    <td>32 GB RAM</td>
+                </tr>
 
-                <table class="specs">
-                    <tr>
-                        <td>OS</td>
-                        <td>Debian GNU/Linux 13 (Trixie)</td>
-                    </tr>
+                <tr>
+                    <td>Storage</td>
+                    <td>256 GB</td>
+                </tr>
 
-                    <tr>
-                        <td>Kernel</td>
-                        <td>Linux 6.12.107+deb13-amd64</td>
-                    </tr>
+            </table>
 
-                    <tr>
-                        <td>Shell</td>
-                        <td>Bash 5.2.37</td>
-                    </tr>
-                </table>
+            <h2>Operating System</h2>
 
-                <h2>Server Location</h2>
+            <table class="specs">
 
-                <p>
-                    <strong>a pretty fast sydney-based server</strong>
-                </p>
+                <tr>
+                    <td>OS</td>
+                    <td>Debian GNU/Linux 13 (Trixie)</td>
+                </tr>
 
-                <p>
-                    hosted in sydney, australia for low-latency
-                    gaming.
-                </p>
+                <tr>
+                    <td>Kernel</td>
+                    <td>Linux 6.12.107+deb13-amd64</td>
+                </tr>
 
+                <tr>
+                    <td>Shell</td>
+                    <td>Bash 5.2.37</td>
+                </tr>
+
+            </table>
+
+            <h2>Server Location</h2>
+
+            <p>
+                <strong>a pretty fast sydney-based server</strong>
+            </p>
+
+            <p>
+                hosted in sydney, australia for low-latency
+                gaming.
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <!-- CS2 SERVER -->
+
+    <details name="misato-accordion">
+
+        <summary>CS2 Server</summary>
+
+        <div class="content">
+
+            <img
+                src="skins.png"
+                alt="misatoCSGO skins"
+                class="feature-image"
+            >
+
+            <h2>misatoCSGO</h2>
+
+            <p class="server-status">
+                ● 24/7 ONLINE
+            </p>
+
+            <p>
+                Counter-Strike 2 server with custom gameplay,
+                skins, Deathmatch and more.
+            </p>
+
+            <p>
+                <strong>Public IP releasing soon.</strong>
+            </p>
+
+            <table class="specs">
+
+                <tr>
+                    <td>Server</td>
+                    <td>misatoCSGO</td>
+                </tr>
+
+                <tr>
+                    <td>Map</td>
+                    <td>de_mirage_csgo</td>
+                </tr>
+
+            </table>
+
+            <h2>skinchanger</h2>
+
+            <p>
+                misatoCSGO has a built-in skin changer.
+            </p>
+
+            <p>
+                use: <strong>!ws</strong>
+            </p>
+
+            <ul>
+                <li>Weapons</li>
+                <li>Knives</li>
+                <li>Gloves</li>
+                <li>Agents</li>
+                <li>Stickers</li>
+                <li>Keychains</li>
+                <li>Music Kits</li>
+            </ul>
+
+            <h2>features</h2>
+
+            <img
+                src="gamemodes.png"
+                alt="misatoCSGO features"
+                class="feature-image"
+            >
+
+            <ul>
+                <li>Deathmatch</li>
+                <li>CS:GO Mirage 24/7</li>
+                <li>AutoBhop</li>
+                <li>Hard Bots</li>
+                <li>Custom Gamemodes</li>
+                <li>FPS Mode</li>
+            </ul>
+
+            <h2>FPS Mode</h2>
+
+            <p>
+                misatoCSGO includes a custom FPS Mode designed
+                to reduce unnecessary visual effects and
+                server-side processing for smoother gameplay.
+            </p>
+
+            <p>
+                use: <strong>!fps</strong>
+            </p>
+
+            <p>
+                FPS Mode disables or reduces things such as
+                ragdolls, blood, gibs and other unnecessary
+                effects while applying additional server-side
+                performance optimizations.
+            </p>
+
+            <p>
+                <strong>
+                    can improve FPS by roughly 80%~
+                    depending on the player's hardware,
+                    settings and situation.
+                </strong>
+            </p>
+
+            <p>
+                FPS Mode can be toggled on or off at any time.
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <!-- COUNTER-STRIKE SOURCE SERVER -->
+
+    <details name="misato-accordion">
+
+        <summary>Counter-Strike: Source Server</summary>
+
+        <div class="content">
+
+            <h2>misato CSS</h2>
+
+            <p class="server-status">
+                ● ONLINE
+            </p>
+
+            <p>
+                Counter-Strike: Source dedicated server
+                hosted on the misato server hardware.
+            </p>
+
+            <p>
+                The server is private and available to
+                authorised members of the misato community.
+            </p>
+
+            <table class="specs">
+
+                <tr>
+                    <td>Server</td>
+                    <td>misato CSS</td>
+                </tr>
+
+                <tr>
+                    <td>Game</td>
+                    <td>Counter-Strike: Source</td>
+                </tr>
+
+                <tr>
+                    <td>Map</td>
+                    <td>de_dust2</td>
+                </tr>
+
+                <tr>
+                    <td>Slots</td>
+                    <td>10</td>
+                </tr>
+
+                <tr>
+                    <td>Server Type</td>
+                    <td>Dedicated</td>
+                </tr>
+
+                <tr>
+                    <td>Tickrate</td>
+                    <td>66 Hz</td>
+                </tr>
+
+                <tr>
+                    <td>Access</td>
+                    <td>Private</td>
+                </tr>
+
+            </table>
+
+            <h2>Gameplay</h2>
+
+            <ul>
+                <li>Dust2 only</li>
+                <li>10 player slots</li>
+                <li>Hard bots</li>
+                <li>Automatic bot filling</li>
+                <li>BHOP enabled</li>
+                <li>66 tick server</li>
+                <li>Auto team balancing</li>
+                <li>All-talk enabled</li>
+            </ul>
+
+            <h2>BHOP</h2>
+
+            <p>
+                Bunny hopping is enabled on the server.
+            </p>
+
+            <p>
+                Players can chain jumps and use increased
+                air acceleration for movement-focused gameplay.
+            </p>
+
+            <p>
+                <strong>
+                    BHOP is available at all times.
+                </strong>
+            </p>
+
+            <h2>Bot System</h2>
+
+            <p>
+                The server automatically fills unused
+                player slots with bots.
+            </p>
+
+            <table class="specs">
+
+                <tr>
+                    <td>Maximum Players</td>
+                    <td>10</td>
+                </tr>
+
+                <tr>
+                    <td>Bot Difficulty</td>
+                    <td>Hard</td>
+                </tr>
+
+                <tr>
+                    <td>Bot Fill</td>
+                    <td>Automatic</td>
+                </tr>
+
+                <tr>
+                    <td>Human Players</td>
+                    <td>Bots automatically make room</td>
+                </tr>
+
+            </table>
+
+            <h2>Dust2</h2>
+
+            <p>
+                The server currently runs a dedicated
+                de_dust2 experience.
+            </p>
+
+            <p>
+                The map is designed for classic
+                Counter-Strike: Source gameplay with
+                bots available to keep matches active.
+            </p>
+
+            <h2>Private Access</h2>
+
+            <p>
+                Connection details are intentionally not
+                displayed publicly on this website.
+            </p>
+
+            <p>
+                authorised players can obtain connection
+                information through the misato community.
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <!-- MINECRAFT SERVER -->
+
+    <details name="misato-accordion">
+
+        <summary>Minecraft Server</summary>
+
+        <div class="content">
+
+            <h2>misatoSMP</h2>
+
+            <p class="invite">
+                ● INVITE ONLY
+            </p>
+
+            <p>
+                Vanilla Minecraft Survival.
+            </p>
+
+            <p>
+                This server is reserved for registered members
+                <strong>only</strong>
+                to play.
+            </p>
+
+            <table class="specs">
+
+                <tr>
+                    <td>Game</td>
+                    <td>Minecraft</td>
+                </tr>
+
+                <tr>
+                    <td>Server Name</td>
+                    <td>misatoSMP</td>
+                </tr>
+
+                <tr>
+                    <td>Mode</td>
+                    <td>Vanilla Survival</td>
+                </tr>
+
+                <tr>
+                    <td>Access</td>
+                    <td>Invite Only</td>
+                </tr>
+
+            </table>
+
+            <a
+                class="button"
+                href="mailto:viztini@proton.me?subject=misatoSMP%20Access%20Request&body=Hello%2C%20I%20would%20like%20to%20request%20access%20to%20misatoSMP."
+            >
+                request access
+            </a>
+
+        </div>
+
+    </details>
+
+
+    <!-- SKINCHANGER -->
+
+    <details name="misato-accordion">
+
+        <summary>Vantix Skinchanger</summary>
+
+        <div class="content">
+
+            <h2>Vantix Skinchanger</h2>
+
+            <p>
+                Counter-Strike 2 skin changer featuring
+                weapon, knife, glove, agent, sticker and
+                keychain customization.
+            </p>
+
+            <div class="filename">
+                Vantix Skinchanger.exe
             </div>
 
-        </details>
+            <br>
 
+            <a
+                class="button"
+                href="Vantix%20Skinchanger.exe"
+                download
+            >
+                Download Vantix
+            </a>
 
-        <!-- CS2 SERVER -->
+            <a
+                class="button"
+                href="https://www.unknowncheats.me/forum/counter-strike-2-releases/756621-vantix-skinchanger-knives-gloves-agents-stickers-keychains.html"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Original Thread
+            </a>
 
-        <details name="misato-accordion">
+            <h2>Features</h2>
 
-            <summary>CS2 Server</summary>
+            <ul>
+                <li>Weapon skins</li>
+                <li>Knife skins</li>
+                <li>Glove skins</li>
+                <li>Agents</li>
+                <li>Stickers</li>
+                <li>Keychains</li>
+                <li>Music Kits</li>
+                <li>Collections</li>
+                <li>Patches</li>
+                <li>Custom PaintKit colours</li>
+            </ul>
 
-            <div class="content">
+            <div class="notice">
 
-                <img
-                    src="skins.png"
-                    alt="misatoCSGO skins"
-                    class="feature-image"
-                >
-
-                <h2>misatoCSGO</h2>
-
-                <p class="server-status">
-                    ● 24/7 ONLINE
-                </p>
-
-                <p>
-                    Counter-Strike 2 server with custom gameplay,
-                    skins, Deathmatch and more.
-                </p>
-
-                <p>
-                    <strong>Public IP releasing soon.</strong>
-                </p>
-
-                <table class="specs">
-                    <tr>
-                        <td>Server</td>
-                        <td>misatoCSGO</td>
-                    </tr>
-
-                    <tr>
-                        <td>Map</td>
-                        <td>de_mirage_csgo</td>
-                    </tr>
-                </table>
-
-                <h2>skinchanger</h2>
-
-                <p>
-                    misatoCSGO has a built-in skin changer.
-                </p>
-
-                <p>
-                    use: <strong>!ws</strong>
-                </p>
-
-                <ul>
-                    <li>Weapons</li>
-                    <li>Knives</li>
-                    <li>Gloves</li>
-                    <li>Agents</li>
-                    <li>Stickers</li>
-                    <li>Keychains</li>
-                    <li>Music Kits</li>
-                </ul>
-
-                <h2>features</h2>
-
-                <img
-                    src="gamemodes.png"
-                    alt="misatoCSGO features"
-                    class="feature-image"
-                >
-
-                <ul>
-                    <li>Deathmatch</li>
-                    <li>CS:GO Mirage 24/7</li>
-                    <li>AutoBhop</li>
-                    <li>Hard Bots</li>
-                    <li>Custom Gamemodes</li>
-                    <li>FPS Mode</li>
-                </ul>
-
-                <h2>FPS Mode</h2>
-
-                <p>
-                    misatoCSGO includes a custom FPS Mode designed
-                    to reduce unnecessary visual effects and
-                    server-side processing for smoother gameplay.
-                </p>
-
-                <p>
-                    use: <strong>!fps</strong>
-                </p>
-
-                <p>
-                    FPS Mode disables or reduces things such as
-                    ragdolls, blood, gibs and other unnecessary
-                    effects while applying additional server-side
-                    performance optimizations.
-                </p>
+                <h2>Important Notice</h2>
 
                 <p>
                     <strong>
-                        can improve FPS by roughly 80%~
-                        depending on the player's hardware,
-                        settings and situation.
+                        We are NOT the developer or owner of Vantix.
                     </strong>
                 </p>
 
                 <p>
-                    FPS Mode can be toggled on or off at any time.
+                    we are sharing this software as a
+                    third-party resource for the misato
+                    community. all rights, development and
+                    original distribution belong to their
+                    respective author.
+                </p>
+
+                <p>
+                    the original release and information can
+                    be found on UnknownCheats.
+                </p>
+
+                <p>
+                    Vantix interacts with Counter-Strike 2
+                    in a way that may trigger antivirus or
+                    endpoint-security detections. Only run
+                    software you trust and verify files before
+                    executing them.
                 </p>
 
             </div>
 
-        </details>
+        </div>
 
+    </details>
 
-        <!-- MINECRAFT SERVER -->
+</div>
 
-        <details name="misato-accordion">
+<footer>
+    misato servers
+</footer>
 
-            <summary>Minecraft Server</summary>
-
-            <div class="content">
-
-                <h2>misatoSMP</h2>
-
-                <p class="invite">
-                    ● INVITE ONLY
-                </p>
-
-                <p>
-                    Vanilla Minecraft Survival.
-                </p>
-
-                <p>
-                    This server is reserved for registered members
-                    <strong>only</strong>
-                    to play.
-                </p>
-
-                <table class="specs">
-                    <tr>
-                        <td>Game</td>
-                        <td>Minecraft</td>
-                    </tr>
-
-                    <tr>
-                        <td>Server Name</td>
-                        <td>misatoSMP</td>
-                    </tr>
-
-                    <tr>
-                        <td>Mode</td>
-                        <td>Vanilla Survival</td>
-                    </tr>
-
-                    <tr>
-                        <td>Access</td>
-                        <td>Invite Only</td>
-                    </tr>
-                </table>
-
-                <a
-                    class="button"
-                    href="mailto:viztini@proton.me?subject=misatoSMP%20Access%20Request&body=Hello%2C%20I%20would%20like%20to%20request%20access%20to%20misatoSMP."
-                >
-                    request access
-                </a>
-
-            </div>
-
-        </details>
-
-
-        <!-- SKINCHANGER -->
-
-        <details name="misato-accordion">
-
-            <summary>Vantix Skinchanger</summary>
-
-            <div class="content">
-
-                <h2>Vantix Skinchanger</h2>
-
-                <p>
-                    Counter-Strike 2 skin changer featuring
-                    weapon, knife, glove, agent, sticker and
-                    keychain customization.
-                </p>
-
-                <div class="filename">
-                    Vantix Skinchanger.exe
-                </div>
-
-                <br>
-
-                <a
-                    class="button"
-                    href="Vantix%20Skinchanger.exe"
-                    download
-                >
-                    Download Vantix
-                </a>
-
-                <a
-                    class="button"
-                    href="https://www.unknowncheats.me/forum/counter-strike-2-releases/756621-vantix-skinchanger-knives-gloves-agents-stickers-keychains.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Original Thread
-                </a>
-
-                <h2>Features</h2>
-
-                <ul>
-                    <li>Weapon skins</li>
-                    <li>Knife skins</li>
-                    <li>Glove skins</li>
-                    <li>Agents</li>
-                    <li>Stickers</li>
-                    <li>Keychains</li>
-                    <li>Music Kits</li>
-                    <li>Collections</li>
-                    <li>Patches</li>
-                    <li>Custom PaintKit colours</li>
-                </ul>
-
-                <div class="notice">
-
-                    <h2>Important Notice</h2>
-
-                    <p>
-                        <strong>
-                            We are NOT the developer or owner of Vantix.
-                        </strong>
-                    </p>
-
-                    <p>
-                        we are sharing this software as a
-                        third-party resource for the misato
-                        community. all rights, development and
-                        original distribution belong to their
-                        respective author.
-                    </p>
-
-                    <p>
-                        the original release and information can
-                        be found on UnknownCheats.
-                    </p>
-
-                    <p>
-                        Vantix interacts with Counter-Strike 2
-                        in a way that may trigger antivirus or
-                        endpoint-security detections. Only run
-                        software you trust and verify files before
-                        executing them.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </details>
-
-    </div>
-
-    <footer>
-        misato servers
-    </footer>
 
 </div>
 
@@ -594,4 +760,3 @@ async function copyText(text, button) {
 
 </body>
 </html>
-
